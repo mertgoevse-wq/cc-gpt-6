@@ -1,0 +1,88 @@
+[project]
+name = "cc-gpt-6"
+version = "0.2.0"
+description = "Anthropic-compatible proxy over a logged-in ChatGPT session."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "httpx>=0.27",
+    "cryptography>=42",
+    "comtypes>=1.2",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: Proxy Servers",
+]
+keywords = [
+    "anthropic",
+    "claude",
+    "claude-code",
+    "chatgpt",
+    "openai",
+    "proxy",
+    "gpt-6",
+    "o3-mini",
+    "reasoning",
+]
+
+[project.scripts]
+cc-gpt-6 = "cc_gpt_6.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/cc-gpt-6"
+Repository = "https://github.com/yourusername/cc-gpt-6"
+Issues = "https://github.com/yourusername/cc-gpt-6/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+select = ["E", "F", "I", "UP", "W"]
+ignore = ["E501"]
+
+[tool.black]
+target-version = ["py312"]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
